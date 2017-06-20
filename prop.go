@@ -34,8 +34,9 @@ func ParseProperties(properties []byte) (map[string]string, error) {
 	}
 	err := scanner.Err()
 	if err != nil && err != io.EOF {
-		log.Println("save.preorder:error while read input data", err)
+		log.Println("mf:error while read input data", err)
 		return nil, err
 	}
 	return cfg, nil
 }
+
