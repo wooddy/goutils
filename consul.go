@@ -42,7 +42,7 @@ func GetConfigFromConsul(url, key, token string) (configContent []byte, err erro
 	}
 }
 
-func GetConfigMapFromConsul(url, key, token string) (map[string]string, error){
+func GetConfigMapFromConsul(url, key, token string) (Config, error){
 	configInBytes, err := GetConfigFromConsul(url, key, token)
 	if err != nil {
 		return nil, err
