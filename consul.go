@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"errors"
+	"fmt"
 )
 
 func GetConfigFromConsul(url, key, token string) (configContent []byte, err error) {
@@ -18,6 +20,9 @@ func GetConfigFromConsul(url, key, token string) (configContent []byte, err erro
 	if err != nil {
 		return nil, err
 	} else {
+		if resp.StatusCode != 200 {
+			return nil, errors.New(fmt.Sprintf("failed get config. server response code:%s", resp.StatusCode))
+		}
 		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			return nil, err
@@ -35,6 +40,14 @@ func GetConfigFromConsul(url, key, token string) (configContent []byte, err erro
 		}
 		return keyValueContent, nil
 	}
+}
+
+func GetConfigMapFromConsul(url, key, token string) (Config, error){
+	configInBytes, err := GetConfigFromConsul(url, key, token)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProperties(configInBytes)
 }
 
 type ConsulKey struct {

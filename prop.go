@@ -18,9 +18,9 @@ func ParseProperties(properties []byte) (map[string]string, error) {
 		if len(line) == 0 || line[0] == '#' {
 			continue
 		} else {
-			keyvalue := strings.Split(line, "=")
-			if len(keyvalue) >= 2 {
-				key := strings.TrimSpace(keyvalue[0])
+			keyValue := strings.Split(line, "=")
+			if len(keyValue) >= 2 {
+				key := strings.TrimSpace(keyValue[0])
 				value := strings.TrimSpace(line[len(key)+1:])
 				var tmp []rune
 				for _, r := range value {
