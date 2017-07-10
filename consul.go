@@ -1,10 +1,10 @@
 package goutils
 
 import (
-	"net/http"
-	"io/ioutil"
-	"encoding/json"
 	"encoding/base64"
+	"encoding/json"
+	"io/ioutil"
+	"net/http"
 )
 
 func GetConfigFromConsul(url, key, token string) (configContent []byte, err error) {

@@ -3,10 +3,10 @@ package goutils
 import (
 	"bufio"
 	"bytes"
-	"strings"
-	"unicode"
 	"io"
 	"log"
+	"strings"
+	"unicode"
 )
 
 func ParseProperties(properties []byte) (map[string]string, error) {
@@ -39,4 +39,3 @@ func ParseProperties(properties []byte) (map[string]string, error) {
 	}
 	return cfg, nil
 }
-
